@@ -18,7 +18,7 @@ Compute the following table size data:
 function _compute_table_size_data(
     header_str::Matrix{String},
     data_str::Matrix{Vector{String}},
-    id_cols::Vector{Int},
+    id_cols::Union{Vector{Int},UnitRange{Int}},
     Δc::Int,
     # Configurations
     columns_width::Vector{Int},
