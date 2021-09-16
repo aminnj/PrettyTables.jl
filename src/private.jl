@@ -225,12 +225,6 @@ function _print_info(
         show_row_names = false
     end
 
-    # If the user wants to filter the data, then check which columns and rows
-    # must be printed. Notice that if a data is filtered, then it means that it
-    # passed the filter and must be printed.
-    filtered_rows = ones(Bool, num_rows)
-    filtered_cols = ones(Bool, num_cols)
-
     # `id_cols` and `id_rows` contains the indices of the data array that will
     # be printed.
     id_cols = 1:num_cols
@@ -238,7 +232,11 @@ function _print_info(
     num_printed_cols = num_cols
     num_printed_rows = num_rows
 
+    # If the user wants to filter the data, then check which columns and rows
+    # must be printed. Notice that if a data is filtered, then it means that it
+    # passed the filter and must be printed.
     if filters_row != nothing
+        filtered_rows = ones(Bool, num_rows)
         @inbounds for i = 1:num_rows
             filtered_i = true
 
@@ -253,6 +251,7 @@ function _print_info(
     end
 
     if filters_col != nothing
+        filtered_cols = ones(Bool, num_cols)
         @inbounds for i = 1:num_cols
             filtered_i = true
 

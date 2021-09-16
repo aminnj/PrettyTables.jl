@@ -8,7 +8,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 """
-    _compute_table_size_data(header_str::Matrix{String}, data_str::Matrix{Vector{String}}, id_cols::Vector{Int}, Δc::Int, # Configurations columns_width::Vector{Int}, crop_subheader::Bool, maximum_columns_width::Vector{Int}, minimum_columns_width::Vector{Int}, noheader::Bool)
+    _compute_table_size_data(header_str::Matrix{String}, data_str::Matrix{Vector{String}}, id_cols::AbstractVector{Int}, Δc::Int, # Configurations columns_width::Vector{Int}, crop_subheader::Bool, maximum_columns_width::Vector{Int}, minimum_columns_width::Vector{Int}, noheader::Bool)
 
 Compute the following table size data:
 
