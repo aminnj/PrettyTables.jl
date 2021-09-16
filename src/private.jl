@@ -231,6 +231,13 @@ function _print_info(
     filtered_rows = ones(Bool, num_rows)
     filtered_cols = ones(Bool, num_cols)
 
+    # `id_cols` and `id_rows` contains the indices of the data array that will
+    # be printed.
+    id_cols = 1:num_cols
+    id_rows = 1:num_rows
+    num_printed_cols = num_cols
+    num_printed_rows = num_rows
+
     if filters_row != nothing
         @inbounds for i = 1:num_rows
             filtered_i = true
@@ -241,6 +248,8 @@ function _print_info(
 
             filtered_rows[i] = filtered_i
         end
+        id_rows = findall(filtered_rows)
+        num_printed_rows = length(id_rows)
     end
 
     if filters_col != nothing
@@ -253,14 +262,10 @@ function _print_info(
 
             filtered_cols[i] = filtered_i
         end
+        id_cols = findall(filtered_cols)
+        num_printed_cols = length(id_cols)
     end
 
-    # `id_cols` and `id_rows` contains the indices of the data array that will
-    # be printed.
-    id_cols          = findall(filtered_cols)
-    id_rows          = findall(filtered_rows)
-    num_printed_cols = length(id_cols)
-    num_printed_rows = length(id_rows)
 
     # Make sure that `cell_alignment` is a tuple.
     if cell_alignment == nothing
